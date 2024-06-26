@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Aug 20, 2023 at 01:47 PM
+- Server version: 10.4.28-MariaDB
+- PHP Version: 8.2.4
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="nursary_db" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="cart">
+                CREATE TABLE `cart` (
+                  `id` int(100) NOT NULL AUTO_INCREMENT,
+                  `user_id` int(100) NOT NULL,
+                  `pid` int(100) NOT NULL,
+                  `name` varchar(100) NOT NULL,
+                  `price` int(100) NOT NULL,
+                  `quantity` int(100) NOT NULL,
+                  `image` varchar(100) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `user_id` (`user_id`),
+                  KEY `pid` (`pid`),
+                  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+                  CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `products` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="message">
+                CREATE TABLE `message` (
+                  `id` int(100) NOT NULL AUTO_INCREMENT,
+                  `user_id` int(100) NOT NULL,
+                  `name` varchar(100) NOT NULL,
+                  `email` varchar(100) NOT NULL,
+                  `number` varchar(12) NOT NULL,
+                  `message` varchar(500) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `user_id` (`user_id`),
+                  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="orders">
+                CREATE TABLE `orders` (
+                  `id` int(100) NOT NULL AUTO_INCREMENT,
+                  `user_id` int(100) NOT NULL,
+                  `pid` int(100) NOT NULL,
+                  `name` varchar(100) NOT NULL,
+                  `number` varchar(12) NOT NULL,
+                  `email` varchar(100) NOT NULL,
+                  `method` varchar(50) NOT NULL,
+                  `address` varchar(500) NOT NULL,
+                  `total_products` varchar(1000) NOT NULL,
+                  `total_price` int(100) NOT NULL,
+                  `placed_on` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+                  `payment_status` varchar(20) NOT NULL DEFAULT &#039;pending&#039;,
+                  `product_image` varchar(255) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `user_id` (`user_id`),
+                  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="products">
+                CREATE TABLE `products` (
+                  `id` int(100) NOT NULL AUTO_INCREMENT,
+                  `name` varchar(100) NOT NULL,
+                  `category` varchar(100) NOT NULL,
+                  `details` varchar(500) NOT NULL,
+                  `price` int(100) NOT NULL,
+                  `stock_quantity` int(255) NOT NULL,
+                  `image` varchar(100) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="users">
+                CREATE TABLE `users` (
+                  `id` int(100) NOT NULL AUTO_INCREMENT,
+                  `username` varchar(100) NOT NULL,
+                  `email` varchar(100) NOT NULL,
+                  `password` varchar(100) NOT NULL,
+                  `address` varchar(255) NOT NULL,
+                  `number` int(50) NOT NULL,
+                  `user_type` varchar(20) NOT NULL DEFAULT &#039;user&#039;,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="wishlist">
+                CREATE TABLE `wishlist` (
+                  `id` int(100) NOT NULL AUTO_INCREMENT,
+                  `user_id` int(100) NOT NULL,
+                  `pid` int(100) NOT NULL,
+                  `name` varchar(100) NOT NULL,
+                  `price` int(100) NOT NULL,
+                  `image` varchar(100) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `pid` (`pid`),
+                  KEY `user_id` (`user_id`),
+                  CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `products` (`id`),
+                  CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'nursary_db'
+    -->
+    <database name="nursary_db">
+        <!-- Table cart -->
+        <!-- Table message -->
+        <table name="message">
+            <column name="id">14</column>
+            <column name="user_id">26</column>
+            <column name="name">hello world</column>
+            <column name="email">user1@gmail.com</column>
+            <column name="number">987989488</column>
+            <column name="message">hello</column>
+        </table>
+        <table name="message">
+            <column name="id">15</column>
+            <column name="user_id">26</column>
+            <column name="name">hello world</column>
+            <column name="email">user1@gmail.com</column>
+            <column name="number">787977576</column>
+            <column name="message">hello</column>
+        </table>
+        <!-- Table orders -->
+        <table name="orders">
+            <column name="id">41</column>
+            <column name="user_id">26</column>
+            <column name="pid">25</column>
+            <column name="name">user1</column>
+            <column name="number">2147483647</column>
+            <column name="email">user1@gmail.com</column>
+            <column name="method">cash on delivery</column>
+            <column name="address">bhaktapur</column>
+            <column name="total_products">Strelitzia Reginae (1)</column>
+            <column name="total_price">2500</column>
+            <column name="placed_on">20-Aug</column>
+            <column name="payment_status">pending</column>
+            <column name="product_image"></column>
+        </table>
+        <table name="orders">
+            <column name="id">42</column>
+            <column name="user_id">26</column>
+            <column name="pid">0</column>
+            <column name="name">user1</column>
+            <column name="number">2147483647</column>
+            <column name="email">user1@gmail.com</column>
+            <column name="method">cash on delivery</column>
+            <column name="address"></column>
+            <column name="total_products">Strelitzia Reginae (1)</column>
+            <column name="total_price">2500</column>
+            <column name="placed_on">20-Aug</column>
+            <column name="payment_status">pending</column>
+            <column name="product_image"></column>
+        </table>
+        <!-- Table products -->
+        <table name="products">
+            <column name="id">24</column>
+            <column name="name">Rubber Tree</column>
+            <column name="category">plants</column>
+            <column name="details">The Rubber Tree (Ficus elastica) is a visually striking houseplant known for its large, glossy leaves and unique growth habit. With its thick, dark green foliage and ability to purify the air, this tropical rainforest native adds a bold and dramatic element to any indoor space. Growing up to 8-10 feet tall, the Rubber Tree thrives in bright, indirect light and prefers moderately humid environments. Its low-maintenance nature and impressive ornamental value make it an ideal choice for plant enthu</column>
+            <column name="price">2000</column>
+            <column name="stock_quantity">2</column>
+            <column name="image">rubberplant.jpg</column>
+        </table>
+        <table name="products">
+            <column name="id">25</column>
+            <column name="name">Strelitzia Reginae</column>
+            <column name="category">plants</column>
+            <column name="details">Strelitzia reginae, commonly known as the crane flower, bird of paradise, or isigude in Nguni, is a species of flowering plant indigenous to South Africa. An evergreen perennial, it is widely cultivated for its dramatic flowers. In temperate areas it is a popular houseplant.</column>
+            <column name="price">2500</column>
+            <column name="stock_quantity">14</column>
+            <column name="image">strelitziaReginae.jpg</column>
+        </table>
+        <table name="products">
+            <column name="id">26</column>
+            <column name="name">Palm Tree</column>
+            <column name="category">plants</column>
+            <column name="details">Palm trees are a type of tropical or subtropical tree belonging to the family Arecaceae. They are known for their distinctive appearance, characterized by a tall, slender trunk and a crown of large, fan-shaped or feather-like leaves at the top. Palm trees are widely distributed across the world, particularly in regions with warm climates.
+
+</column>
+            <column name="price">2000</column>
+            <column name="stock_quantity">0</column>
+            <column name="image">palmtree.jpg</column>
+        </table>
+        <table name="products">
+            <column name="id">27</column>
+            <column name="name">Sansevieria</column>
+            <column name="category">plants</column>
+            <column name="details">Sansevieria is a historically recognized genus of flowering plants, native to Africa, notably Madagascar, and southern Asia, now included in the genus Dracaena on the basis of molecular phylogenetic studies.</column>
+            <column name="price">2500</column>
+            <column name="stock_quantity">0</column>
+            <column name="image">sansevieria.jpg</column>
+        </table>
+        <table name="products">
+            <column name="id">31</column>
+            <column name="name">Rose</column>
+            <column name="category"></column>
+            <column name="details">this is rose</column>
+            <column name="price">1500</column>
+            <column name="stock_quantity">5</column>
+            <column name="image">rose.jpg</column>
+        </table>
+        <table name="products">
+            <column name="id">32</column>
+            <column name="name">crowbars</column>
+            <column name="category">tools</column>
+            <column name="details">faee</column>
+            <column name="price">1000</column>
+            <column name="stock_quantity">50</column>
+            <column name="image">crowbars.jpg</column>
+        </table>
+        <table name="products">
+            <column name="id">33</column>
+            <column name="name">scissors</column>
+            <column name="category">tools</column>
+            <column name="details">aaetsaf</column>
+            <column name="price">1500</column>
+            <column name="stock_quantity">50</column>
+            <column name="image">gardening-scissor.jpg</column>
+        </table>
+        <table name="products">
+            <column name="id">34</column>
+            <column name="name">jhh</column>
+            <column name="category">fertilizers</column>
+            <column name="details">njkbnjn</column>
+            <column name="price">1500</column>
+            <column name="stock_quantity">25</column>
+            <column name="image">bonsaiTree.jpg</column>
+        </table>
+        <table name="products">
+            <column name="id">35</column>
+            <column name="name">watering-cans</column>
+            <column name="category">Pesticides</column>
+            <column name="details">ABCD</column>
+            <column name="price">1500</column>
+            <column name="stock_quantity">25</column>
+            <column name="image">watering-cans.jpg</column>
+        </table>
+
+        <!-- Table users -->
+        <table name="users">
+            <column name="id">23</column>
+            <column name="username">admin1</column>
+            <column name="email">admin1@gmail.com</column>
+            <column name="password">81dc9bdb52d04dc20036dbd8313ed055</column>
+            <column name="address">bhaktapur</column>
+            <column name="number">2147483647</column>
+            <column name="user_type">admin</column>
+        </table>
+        <table name="users">
+            <column name="id">24</column>
+            <column name="username">user4</column>
+            <column name="email">user4@gmail.com</column>
+            <column name="password">81dc9bdb52d04dc20036dbd8313ed055</column>
+            <column name="address">kathmandu</column>
+            <column name="number">65657548</column>
+            <column name="user_type">user</column>
+        </table>
+        <table name="users">
+            <column name="id">25</column>
+            <column name="username">admin3</column>
+            <column name="email">admin3@gmail.com</column>
+            <column name="password">e10adc3949ba59abbe56e057f20f883e</column>
+            <column name="address">kathmandu</column>
+            <column name="number">987654321</column>
+            <column name="user_type">admin</column>
+        </table>
+        <table name="users">
+            <column name="id">26</column>
+            <column name="username">user1</column>
+            <column name="email">user1@gmail.com</column>
+            <column name="password">81dc9bdb52d04dc20036dbd8313ed055</column>
+            <column name="address">bhaktapur</column>
+            <column name="number">2147483647</column>
+            <column name="user_type">user</column>
+        </table>
+        <table name="users">
+            <column name="id">27</column>
+            <column name="username">hello</column>
+            <column name="email">hello@gmail.com</column>
+            <column name="password">81dc9bdb52d04dc20036dbd8313ed055</column>
+            <column name="address"></column>
+            <column name="number">0</column>
+            <column name="user_type">user</column>
+        </table>
+        <!-- Table wishlist -->
+    </database>
+</pma_xml_export>
